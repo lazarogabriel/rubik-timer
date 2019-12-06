@@ -1,2 +1,1 @@
-RubikTimer for rubir players
-
+# rubik-timer
