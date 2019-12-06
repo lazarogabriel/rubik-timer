@@ -8,7 +8,7 @@
  btnContainerFinger.addEventListener("click", () => playCronometro());
 
 
-document.onkeypress = function(e) {
+document.onkeypress = (e) => {
     e = e || window.event;
     var charCode = e.keyCode || e.which;
     if (charCode === 32) {
@@ -18,7 +18,7 @@ document.onkeypress = function(e) {
     }
 }
 
- playCronometro = () =>{
+ playCronometro = () => {
     if(tiempo === 0){
         intervalo = setInterval( () => {
             tiempo +=0.01;
@@ -35,4 +35,3 @@ document.onkeypress = function(e) {
     top: 500,
     behavior: 'smooth',
 }));
-
