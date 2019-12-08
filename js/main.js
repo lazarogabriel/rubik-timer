@@ -41,39 +41,68 @@
 
  //btnContainerFinger.addEventListener("click", () => playStopCronometro());
 
-    
-//  Pressure.set('#finger-container', {
-//     change: () => {
-//         tiempoPulsado++;
-//         document.body.style.background = "#742121";
-//         if(bandera === true)playStopCronometro();
-//         if(tiempoPulsado > 50 )document.body.style.background = "#1F4B2A";
-//     },
-//     end: () => {
-//         document.body.style.background = "#1F334B";
-//         if(tiempoPulsado < 100)return;
-//         tiempoPulsado = 0;
-//         bandera = true;
-//         playStopCronometro();
-//     }
-//  });
 
-     
- Pressure.set('#finger-container', {
+ Pressure.set(btnContainerFinger, {
     start: () => {
-        document.body.style.background = "#742121";
+        console.log(bandera);
+        document.body.style.background = "#742121"; // ROJO
         if(bandera === true)playStopCronometro();
     },
+    end: () => {
+        document.body.style.background = "#1F334B";  //AZUL
+    },
     endDeepPress: () => {
-        document.body.style.background = "#1F334B";
-        tiempoPulsado = 0;
+        document.body.style.background = "#1F334B"; //AZUL
+        
         bandera = true;
+        console.log(bandera, "end deep");
         playStopCronometro();
     },
     startDeepPress : () => {
-        document.body.style.background = "#1F4B2A";
-    }
- });
+        document.body.style.background = "#1F4B2A";   //VERDE  
+            }
+  }, {only: 'mouse'});
+  
+  Pressure.set(btnContainerFinger, {
+    start: () => {
+        console.log(bandera);
+        document.body.style.background = "#742121"; // ROJO
+        if(bandera === true)playStopCronometro();
+    },
+    end: () => {
+        document.body.style.background = "#1F334B";  //AZUL
+    },
+    endDeepPress: () => {
+        document.body.style.background = "#1F334B"; //AZUL
+        
+        bandera = true;
+        console.log(bandera, "end deep");
+        playStopCronometro();
+    },
+    startDeepPress : () => {
+        document.body.style.background = "#1F4B2A";   //VERDE  
+            }
+  }, {only: 'touch'});
+//  Pressure.set(btnContainerFinger,  {
+//     start: () => {
+//         tiempoPulsado++;
+//         console.log(tiempoPulsado);
+//         document.body.style.background = "#742121"; // ROJO
+//         if(bandera === true)playStopCronometro();
+//     },
+//     end: () => {
+//         document.body.style.background = "#1F334B"; // AZUL
+//     },
+//     endDeepPress: () => {
+//         document.body.style.background = "#1F334B";// AZUL
+//         bandera = true;
+//         playStopCronometro();
+//     },
+//     startDeepPress : () => {
+//         document.body.style.background = "#1F4B2A";  // VERDE  
+//     }
+    
+//  });
 
 
 document.onkeypress = (e) => {
