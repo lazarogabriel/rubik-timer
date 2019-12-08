@@ -44,12 +44,20 @@
 
   
   Pressure.set(btnContainerFinger, {
-    change: (force, event) => {
-        elementTime.style.width = ((200 * force) + 200) + 'px';
-        elementTime.innerHTML = force;
-        elementTime.style.backgroundColor = "rgb(" + parseInt(Pressure.map(force, 0, 1, 255, 0)) + ",100," + parseInt(Pressure.map(force, 0, 1, 0, 255)) +")";
-        elementTime.style.color = force > 0.3 ? 'white' : 'black';
+    change: () => {
+        tiempoPulsado++;
+        document.body.style.background = "#742121";
+        if(bandera === true)playStopCronometro();
+        if(tiempoPulsado > 50 )document.body.style.background = "#1F4B2A";
       },
+      end: () => {
+        document.body.style.background = "#1F334B";
+        if(tiempoPulsado < 15)return;
+        tiempoPulsado = 0;
+        bandera = true;
+        playStopCronometro();
+      }
+
     
   }, {only: 'touch'});
 
