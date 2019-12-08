@@ -36,21 +36,14 @@
             <h2>Tiempos</h2>
         </div>
 
-        <div id="time-list" class="container">
-
-            
-
-        </div>
-        
+        <div id="time-list" class="container"></div>
     </div>
 
 
 
 
 
-
-
-
+    <script src="js/pressure.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

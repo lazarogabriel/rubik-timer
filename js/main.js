@@ -39,13 +39,24 @@
 
  var interface = new UI;
 
- btnContainerFinger.addEventListener("click", () => playStopCronometro());
+ //btnContainerFinger.addEventListener("click", () => playStopCronometro());
 
-
-//     document.body.style.background = "#742121"; rojo
-//     document.body.style.background = "#1F4B2A"; verde
-//     document.body.style.background = "#1F334B"; azul
- 
+    
+ Pressure.set('#finger-container', {
+    change: () => {
+        tiempoPulsado++;
+        document.body.style.background = "#742121";
+        if(bandera === true)playStopCronometro();
+        if(tiempoPulsado > 50 )document.body.style.background = "#1F4B2A";
+    },
+    end: () => {
+        document.body.style.background = "#1F334B";
+        if(tiempoPulsado < 100)return;
+        tiempoPulsado = 0;
+        bandera = true;
+        playStopCronometro();
+    }
+ });
 
 
 document.onkeypress = (e) => {
@@ -103,8 +114,5 @@ document.getElementById("time-list").addEventListener("click", (e) => {
     interface.deletTime(e.target); 
 });
 
-window.oncontextmenu = function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    return false;
-};
+
+
