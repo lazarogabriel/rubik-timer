@@ -114,5 +114,9 @@ document.getElementById("time-list").addEventListener("click", (e) => {
     interface.deletTime(e.target); 
 });
 
-
+window.oncontextmenu = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+};
 
