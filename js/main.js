@@ -42,47 +42,17 @@
  //btnContainerFinger.addEventListener("click", () => playStopCronometro());
 
 
- Pressure.set(btnContainerFinger, {
-    start: () => {
-        console.log(bandera);
-        document.body.style.background = "#742121"; // ROJO
-        if(bandera === true)playStopCronometro();
-    },
-    end: () => {
-        document.body.style.background = "#1F334B";  //AZUL
-    },
-    endDeepPress: () => {
-        document.body.style.background = "#1F334B"; //AZUL
-        
-        bandera = true;
-        console.log(bandera, "end deep");
-        playStopCronometro();
-    },
-    startDeepPress : () => {
-        document.body.style.background = "#1F4B2A";   //VERDE  
-            }
-  }, {only: 'mouse'});
   
   Pressure.set(btnContainerFinger, {
-    start: () => {
-        console.log(bandera);
-        document.body.style.background = "#742121"; // ROJO
-        if(bandera === true)playStopCronometro();
-    },
-    end: () => {
-        document.body.style.background = "#1F334B";  //AZUL
-    },
-    endDeepPress: () => {
-        document.body.style.background = "#1F334B"; //AZUL
-        
-        bandera = true;
-        console.log(bandera, "end deep");
-        playStopCronometro();
-    },
-    startDeepPress : () => {
-        document.body.style.background = "#1F4B2A";   //VERDE  
-            }
+    change: (force, event) => {
+        elementTime.style.width = ((200 * force) + 200) + 'px';
+        elementTime.innerHTML = force;
+        elementTime.style.backgroundColor = "rgb(" + parseInt(Pressure.map(force, 0, 1, 255, 0)) + ",100," + parseInt(Pressure.map(force, 0, 1, 0, 255)) +")";
+        elementTime.style.color = force > 0.3 ? 'white' : 'black';
+      },
+    
   }, {only: 'touch'});
+
 //  Pressure.set(btnContainerFinger,  {
 //     start: () => {
 //         tiempoPulsado++;
