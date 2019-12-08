@@ -14,7 +14,15 @@ body{
 #main{
     position: fixed;
 }
+
+.circle, .circle2, .finger, #huellaPulgar {
+  position: absolute; 
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+
 .finger{
+    top: 76%;
     box-shadow: 0px 0px 20px 0px rgba(255, 239, 213, 0.911);
     width: 90px;
     height: 130px;
@@ -22,27 +30,35 @@ body{
     background-color: papayawhip;
 }
 
-.finger img{
+.start{
+  font-size: 7rem;
+  transition: 1s;
+}
+
+.stop{
+  font-size: 3rem;
+  transition: 1s;
+}
+
+ #huellaPulgar{
     opacity: 0.5;
     width: 70px;
     display:block;
-    position: absolute; 
-    transform: translate(-50%, -50%);
-    top:73%;
-    left:50%;
+    top: 34%;
 }
-
+#huellaPulgar:hover{
+  opacity: 0.9;
+  transition: 1s;
+}
 
 .circle, .circle2 {
     top: 76%;
-    left: 50%;
     position: absolute;
     width: 0;
     height: 0;
     display: block;
     border-radius: 45%;
     border: 2px solid rgba(255, 239, 213, 0.363);
-    transform: translate(-50%, -50%);
     animation: ondas 4s ease infinite;
   }
   .circle2{
@@ -62,10 +78,12 @@ body{
 
   #time-list{
       letter-spacing: 2px;
-      font-size:1.2em;
+      font-size:1.6em;
   }
 
 
+
+  
 @keyframes ondas {
     from {
       width: 92px;
