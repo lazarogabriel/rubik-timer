@@ -1,7 +1,4 @@
 
-
-
-
  const btnContainerFinger = document.getElementById("finger-container");
  const btnOpenStats = document.getElementById('openStats');
  const elementTime = document.getElementById('time');
@@ -23,9 +20,9 @@
     // for (var i = 0; i < datos.users[0].times.length; i++) {
     //     interface.insertTimeInList(datos.users[0].times[i], i);
     // }
-
- document.getElementById("btnShowLogIn").addEventListener("click", () => interface.showLogInModal());
- document.getElementById("btnCloseLogin").addEventListener("click", () => interface.hiddenLogInModal());
+ const loginModal = document.getElementById("login");
+ document.getElementById("btnShowLogIn").addEventListener("click", () => interface.showLogInModal(loginModal));
+ document.getElementById("btnCloseLogin").addEventListener("click", () => interface.hiddenLogInModal(loginModal));
 
  btnContainerFinger.addEventListener("click", () => {
      bandera ? playStopCronometro() : "";
@@ -47,17 +44,17 @@ Pressure.set(btnContainerFinger,  {
         playStopCronometro();
     },
     startDeepPress : () => {
-        document.body.style.background = "#1F4B2A";  // VERDE  
+        document.body.style.background = "#1F4B2A";  // VERDE
    }
-   
+
  }, {only: 'mouse'});
-// END CLICK EVENT 
+// END CLICK EVENT
 
 
 // TOUCH SCREEN EVENT
   Pressure.set(btnContainerFinger, {
     change: () => {
-        tryPlay();  
+        tryPlay();
       },
       end: () => {
         Play();
@@ -65,14 +62,14 @@ Pressure.set(btnContainerFinger,  {
   }, {only: 'touch'});
 // END TOUCH SCREEN EVENT
 
-// SPACE KEY EVENT 
+// SPACE KEY EVENT
 document.addEventListener("keypress", spaceEventPress);
 document.addEventListener("keyup", spaceEventUp);
 
 function spaceEventPress (e){
     e = e || window.event;
     let charCode = e.keyCode || e.which;
-    if (charCode === 32)tryPlay();    
+    if (charCode === 32)tryPlay();
     e.preventDefault();
 };
 
@@ -80,9 +77,9 @@ function spaceEventUp(e) {
     e = e || window.event;
     let charCode = e.keyCode || e.which;
     if (charCode === 32)Play();
-        
+
 };
-// END SPACE KEY EVENT 
+// END SPACE KEY EVENT
 
 playStopCronometro = () => {
     if(tiempo === 0){
@@ -108,8 +105,8 @@ btnOpenStats.addEventListener('click', () => window.scrollTo({
 }));
 
 timeList.addEventListener("click", (e) => {
-    interface.showTimeInfo(e.target); 
-    interface.deletTime(e.target); 
+    interface.showTimeInfo(e.target);
+    interface.deletTime(e.target);
 });
 
 function tryPlay(){
@@ -142,12 +139,12 @@ var interface =  {
         const list = document.getElementById("time-list");
         const elementTime = document.createElement('div');
         elementTime.innerHTML = `
-            <span>${timesCant}- ${tiempo.toFixed(2)}</span> 
+            <span>${timesCant}- ${tiempo.toFixed(2)}</span>
             <span class="float-right">
                 <button type="button" name="info" class="font-weight-bold text-dark btn btn-warning btn-sm">Info</button>
                 <button type="button" name="delete" class="font-weight-bold btn btn-danger btn-sm">X</button>
             </span>
-        `; 
+        `;
         list.appendChild(elementTime);
     },
     deletTime(element){
@@ -156,17 +153,33 @@ var interface =  {
     showTimeInfo(element){
         //if(element.name === 'info')console.log(element.parentElement.parentElement);
     },
-     showLogInModal(){
-        document.getElementById("main").style.opacity = "0.3";
+     showLogInModal(element){
+        this.animationIn(element);
+        document.getElementById("main").style.opacity = "0.5";
         document.removeEventListener("keypress", spaceEventPress);
         document.removeEventListener("keyup", spaceEventUp);
-        document.getElementById("login").style.display = "block";
-
     },
-    hiddenLogInModal(){
+    hiddenLogInModal(element){
+        this.animationOut(element);
         document.getElementById("main").style.opacity = "1";
         document.addEventListener("keypress", spaceEventPress);
         document.addEventListener("keyup", spaceEventUp);
-        document.getElementById("login").style.display = "none";   
+    },
+    animationIn(element){
+      var i = 0;
+      var animationTimeOut = setInterval( () => {
+          i += 0.1;
+          element.style.opacity = i;
+          if(i > 1)clearInterval(animationTimeOut);
+      }, 20);
+    },
+    animationOut(element){
+      var i = 1;
+      var animationTimeOut = setInterval( () => {
+          i -= 0.1;
+          element.style.opacity = i;
+          if(i < 0)clearInterval(animationTimeOut);
+      }, 20);
     }
+
 }
