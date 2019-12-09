@@ -1,28 +1,5 @@
 
-class UI {
 
-    insertTimeInList(tiempo, timesCant){
-        const list = document.getElementById("time-list");
-        const elementTime = document.createElement('div');
-        elementTime.innerHTML = `
-            <span>${timesCant}- ${tiempo.toFixed(2)}</span> 
-            <span class="float-right">
-                <button type="button" name="info" class="font-weight-bold text-dark btn btn-warning btn-sm">Info</button>
-                <button type="button" name="delete" class="font-weight-bold btn btn-danger btn-sm">X</button>
-            </span>
-        `; 
-        list.appendChild(elementTime);
-    }
-
-
-    deletTime(element){
-        if(element.name === 'delete')element.parentElement.parentElement.remove();
-    }
-
-    showTimeInfo(element){
-        //if(element.name === 'info')console.log(element.parentElement.parentElement);
-    }
-}
 
 
  const btnContainerFinger = document.getElementById("finger-container");
@@ -36,7 +13,19 @@ class UI {
  var bandera = false;
  var timesCant = 1;
 
- var interface = new UI;
+
+ // PARA LEVANTAR EL USUARIOS
+    // var xhReq = new XMLHttpRequest();
+    // xhReq.open("GET", "users.json", false);
+    // xhReq.send(null);
+    // var datos = JSON.parse(xhReq.responseText);
+
+    // for (var i = 0; i < datos.users[0].times.length; i++) {
+    //     interface.insertTimeInList(datos.users[0].times[i], i);
+    // }
+
+ document.getElementById("btnShowLogIn").addEventListener("click", () => interface.showLogInModal());
+ document.getElementById("btnCloseLogin").addEventListener("click", () => interface.hiddenLogInModal());
 
  btnContainerFinger.addEventListener("click", () => {
      bandera ? playStopCronometro() : "";
@@ -77,19 +66,22 @@ Pressure.set(btnContainerFinger,  {
 // END TOUCH SCREEN EVENT
 
 // SPACE KEY EVENT 
-document.addEventListener("keypress", (e) => {
-    e.preventDefault();
+document.addEventListener("keypress", spaceEventPress);
+document.addEventListener("keyup", spaceEventUp);
+
+function spaceEventPress (e){
     e = e || window.event;
     let charCode = e.keyCode || e.which;
     if (charCode === 32)tryPlay();    
-});
+    e.preventDefault();
+};
 
-document.addEventListener("keyup", (e) => {
+function spaceEventUp(e) {
     e = e || window.event;
     let charCode = e.keyCode || e.which;
     if (charCode === 32)Play();
         
-});
+};
 // END SPACE KEY EVENT 
 
 playStopCronometro = () => {
@@ -120,12 +112,6 @@ timeList.addEventListener("click", (e) => {
     interface.deletTime(e.target); 
 });
 
-window.oncontextmenu = function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    return false;
-};
-
 function tryPlay(){
     tiempoPulsado++;
     document.body.style.background = "#742121";
@@ -135,8 +121,52 @@ function tryPlay(){
 
 function Play(){
     document.body.style.background = "#1F334B";
-    if(tiempoPulsado < 15)return;
+    if(tiempoPulsado < 20)return;
     tiempoPulsado = 0;
     bandera = true;
     playStopCronometro();
+}
+
+
+// ESTA FUNCTION SIRVE PARA QUE AL MANTENER PULSADO
+// O DAR CLICK DERECHO EN UN CELULAR O PC NO APAREZCAN OPCIONES
+window.oncontextmenu = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+};
+
+
+var interface =  {
+    insertTimeInList(tiempo, timesCant){
+        const list = document.getElementById("time-list");
+        const elementTime = document.createElement('div');
+        elementTime.innerHTML = `
+            <span>${timesCant}- ${tiempo.toFixed(2)}</span> 
+            <span class="float-right">
+                <button type="button" name="info" class="font-weight-bold text-dark btn btn-warning btn-sm">Info</button>
+                <button type="button" name="delete" class="font-weight-bold btn btn-danger btn-sm">X</button>
+            </span>
+        `; 
+        list.appendChild(elementTime);
+    },
+    deletTime(element){
+        if(element.name === 'delete')element.parentElement.parentElement.remove();
+    },
+    showTimeInfo(element){
+        //if(element.name === 'info')console.log(element.parentElement.parentElement);
+    },
+     showLogInModal(){
+        document.getElementById("main").style.opacity = "0.3";
+        document.removeEventListener("keypress", spaceEventPress);
+        document.removeEventListener("keyup", spaceEventUp);
+        document.getElementById("login").style.display = "block";
+
+    },
+    hiddenLogInModal(){
+        document.getElementById("main").style.opacity = "1";
+        document.addEventListener("keypress", spaceEventPress);
+        document.addEventListener("keyup", spaceEventUp);
+        document.getElementById("login").style.display = "none";   
+    }
 }

@@ -6,15 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="img/favicon.ico" rel="icon" type="image/x-icon"/>
     <title>Rubik Timer</title>
-    <link href="https://fonts.googleapis.com/css?family=Hind:700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+       
+    <div id="login" class="col-xl-3 col-md-5 col-sm-6 p-3" style="display: none;">
+        <span id="btnCloseLogin" class="float-right">X</span>
+        <h1>Log In </h1>
+        <div class="">
+            <div class="form-group">
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" class="form-control" id="username" autocomplete="off">
+            </div>
+        </div>
+        <div class="">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" autocomplete="off">
+            </div>
+        </div>
+        <div>
+            <small class="pl-2">No tenes una cuenta? <span class="text-primary">Regsitrarme</span> </small>
+            <button class="mt-2 btn btn-dark btn-md btn-block">Ingresar</button>
+        </div>
+    </div>
 
-    <div id="main" class="container-fluid h-100 align-self-center d-flex flex-column align-items-center justify-content-around text-light">
+    <div id="main" class="container-fluid h-100  flex-column align-items-center text-light">
         
-        <div class="text-center">
+        <div class="text-center mt-5">
+            <span id="btnShowLogIn" class="text-warning">Log In</span>
             <h1 class="text-center pb-5">Rubik Timer</h1>
             <h2 id="time" class="text-muted">0.00</h2>
         </div>
@@ -26,11 +47,10 @@
                 <img id="huellaPulgar" src="img/fingerprint-solid.svg" alt="">
             </div>
         </div>
-            
+        
     </div>
 
-
-    <div id="stats" class="timer-stats text-light">
+    <div id="stats" class="text-light">
         <div class="text-center">
             <img id="openStats" src="img/angle-up-solid.svg" class="pt-1" width="25" style="filter: invert(100%);">
             <h2>Tiempos</h2>
