@@ -68,7 +68,6 @@ body{
  #huellaPulgar{
     opacity: 0.5;
     width: 70px;
-    display:block;
     top: 34%;
 }
 #huellaPulgar:hover{

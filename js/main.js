@@ -166,20 +166,22 @@ var interface =  {
         document.addEventListener("keyup", spaceEventUp);
     },
     animationIn(element){
-      var i = 0;
+      var i = -50;
       var animationTimeOut = setInterval( () => {
-          i += 0.1;
-          element.style.opacity = i;
-          if(i > 1)clearInterval(animationTimeOut);
-      }, 20);
+          i += 2;
+          console.log("IN" + i);
+          element.style.top = i +"%";
+          if(i > 49)clearInterval(animationTimeOut);
+      }, 5);
     },
     animationOut(element){
-      var i = 1;
+      var i = 50;
       var animationTimeOut = setInterval( () => {
-          i -= 0.1;
-          element.style.opacity = i;
-          if(i < 0)clearInterval(animationTimeOut);
-      }, 20);
+          i -= 2;
+          console.log("OUT" + i);
+          element.style.top = i + "%";
+          if(i < -49)clearInterval(animationTimeOut);
+      }, 5);
     }
 
 }
