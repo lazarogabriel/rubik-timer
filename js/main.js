@@ -1,5 +1,8 @@
  import UI from './modulos/ui.js'
- const ui = new UI;    
+ import User from './modulos/user.js'
+
+
+ const ui = new UI;
 
  const mainContainer = document.getElementById("main");
  const btnContainerFinger = document.getElementById("finger-container");
@@ -24,14 +27,16 @@
  //     .then( (data) => {
  //         datos = data.users;
  //     });
- // var xhReq = new XMLHttpRequest();
- // xhReq.open("GET", "users.json", false);
- // xhReq.send(null);
- // var datos = JSON.parse(xhReq.responseText);
 
- // for (var i = 0; i < datos.users[0].times.length; i++) {
- //     ui.insertTimeInList(datos.users[0].times[i], i);
- // }
+//  var xhReq = new XMLHttpRequest();
+//  xhReq.open("GET", "users.json", false);
+//   xhReq.send(null);
+//   var datos = JSON.parse(xhReq.responseText);
+
+//  for (var i = 0; i < datos[0].times.length; i++) {
+//      ui.insertTimeInList(datos[0].times[i], i);
+//   }
+//   console.log(datos);
 
 
  // EVENTS /////////////////////////////////////////////////////////////////////

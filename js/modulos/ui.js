@@ -1,4 +1,4 @@
-export default class UI{
+class UI{
 
     insertTimeInList(tiempo, timesCant){
         const list = document.getElementById("time-list");
@@ -39,3 +39,5 @@ export default class UI{
       }, 5);
     }
 }
+
+export default UI;
