@@ -1,11 +1,13 @@
  import UI from './modulos/ui.js'
  const ui = new UI;    
 
+ const mainContainer = document.getElementById("main");
  const btnContainerFinger = document.getElementById("finger-container");
  const btnOpenStats = document.getElementById('openStats');
  const elementTime = document.getElementById('time');
  const timeList = document.getElementById("time-list");
- const loginModal = document.getElementById("login");
+ const loginModal = document.getElementById("loginModal");
+ const registerModal = document.getElementById("registerModal");
 
  var tiempo = 0;
  var tiempoPulsado = 0;
@@ -33,17 +35,32 @@
 
 
  // EVENTS /////////////////////////////////////////////////////////////////////
- document.getElementById("btnShowLogIn").addEventListener("click", () => {
-     ui.showLogInModal(loginModal)
-     document.removeEventListener("keypress", spaceEventPress);
-     document.removeEventListener("keyup", spaceEventUp);
-    });
+document.getElementById("btnShowLogIn").addEventListener("click", () => {
+    ui.animationIn(loginModal);
+    mainContainer.style.opacity = "0.3";
+    document.removeEventListener("keypress", spaceEventPress);
+    document.removeEventListener("keyup", spaceEventUp);
+});
 
- document.getElementById("btnCloseLogin").addEventListener("click", () => {
-     ui.hiddenLogInModal(loginModal)
-     document.addEventListener("keypress", spaceEventPress);
-     document.addEventListener("keyup", spaceEventUp);
-    });
+document.getElementById("btnCloseLogin").addEventListener("click", () => {
+    ui.animationOut(loginModal);
+    mainContainer.style.opacity = "1";
+    document.addEventListener("keypress", spaceEventPress);
+    document.addEventListener("keyup", spaceEventUp);
+});
+
+document.getElementById("btnShowRegister").addEventListener("click", () => {
+    ui.animationIn(registerModal);
+    ui.animationOut(loginModal);
+});
+
+document.getElementById("btnCloseRegister").addEventListener("click", () => {
+    ui.animationOut(registerModal);
+    mainContainer.style.opacity = "1";
+    document.removeEventListener("keypress", spaceEventPress);
+    document.removeEventListener("keyup", spaceEventUp);
+}); 
+
 
  btnContainerFinger.addEventListener("click", () => {
      bandera ? playStopCronometro() : "";
@@ -130,6 +147,7 @@ function Play(){
     bandera = true;
     playStopCronometro();
 }
+
 function playStopCronometro() {
     if(tiempo === 0){
         elementTime.classList = "start";
@@ -147,8 +165,8 @@ function playStopCronometro() {
     }
 };
 
-// ESTA FUNCTION SIRVE PARA QUE AL MANTENER PULSADO
-// O DAR CLICK DERECHO EN UN CELULAR O PC NO APAREZCAN OPCIONES
+
+//REMOVE OPTIONS DEFAULTS WHEN TOUCH LONG IN MOBILE DEVICESS
 window.oncontextmenu = function(event) {
     event.preventDefault();
     event.stopPropagation();

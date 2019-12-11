@@ -20,20 +20,6 @@ export default class UI{
     showTimeInfo(element){
         //if(element.name === 'info')console.log(element.parentElement.parentElement);
     }
-
-     showLogInModal(element){
-        this.animationIn(element);
-        document.getElementById("main").style.opacity = "0.5";
-    }
-
-    hiddenLogInModal(element){
-        this.animationOut(element);
-        document.getElementById("main").style.opacity = "1";
-    }
-
-    showRegisterModal(){
-
-    }
     
     animationIn(element){
       var i = -50;

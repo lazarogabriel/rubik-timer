@@ -6,7 +6,7 @@ body{
     height: 100vh;
 }
 
-#login{
+#loginModal, #registerModal{
   border-radius: 15px;
   position: absolute;
   background-color: #F0AD4E;
@@ -14,7 +14,7 @@ body{
   z-index: 1; 
   width: 90%;
 }
-#username, #password, #confirm_password{
+#username, #password,#register_username, #register_password, #confirm_password{
   border-radius: 15px;
   color: black;
   border: black 1px solid; 
@@ -32,14 +32,14 @@ body{
 #stats{
   background-color:rgb(13, 20, 29);
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.308);
-  border-radius: 50px 50px 0 0 ;
+  border-radius: 50px 50px 0 0;
   width: 100%; 
   height: 100vh;
   position: absolute;
   top: 94%;
 } 
 
-.circle, .circle2, .finger, #huellaPulgar, #login {
+.circle, .circle2, .finger, #huellaPulgar, #loginModal, #registerModal {
   position: absolute; 
   transform: translate(-50%, -50%);
   left: 50%;
@@ -90,7 +90,9 @@ body{
 
   }
   
-  
+  #btnShowLogIn, #btnCloseLogin, #btnCloseRegister, #btnShowRegister, #openStats, #finger-container{
+    cursor: pointer;
+  }  
 
   
 @keyframes ondas {
