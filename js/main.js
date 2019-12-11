@@ -177,3 +177,19 @@ window.oncontextmenu = function(event) {
     event.stopPropagation();
     return false;
 };
+
+
+
+window.onload = () => {
+    const preloaderElement = document.getElementById("preloader");
+
+    var i = 1;
+    var fadeInAnimation = setInterval(() => {
+        i -= 0.1;
+        preloaderElement.style.opacity = i;
+        if(i <= 0){
+            clearInterval(fadeInAnimation);
+            preloaderElement.style.display = "none";
+        }
+    }, 20);
+};

@@ -94,6 +94,14 @@ body{
     cursor: pointer;
   }  
 
+
+ #preloader{
+   background-color: white;
+   position: absolute;
+   width: 100vw;
+   height: 100vh;
+ }
+  
   
 @keyframes ondas {
     from {
