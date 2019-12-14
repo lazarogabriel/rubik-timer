@@ -1,9 +1,7 @@
  import UI from './modulos/ui.js'
  import User from './modulos/user.js'
 
-
  const ui = new UI;
-
  const mainContainer = document.getElementById("main");
  const btnContainerFinger = document.getElementById("finger-container");
  const btnOpenStats = document.getElementById('openStats');
@@ -38,6 +36,13 @@
 //   }
 //   console.log(datos);
 
+var foo0 = foo1();
+
+function foo1(){
+    return 3;
+}
+
+console.log(foo0);
 
  // EVENTS /////////////////////////////////////////////////////////////////////
 document.getElementById("btnShowLogIn").addEventListener("click", () => {
@@ -137,7 +142,7 @@ timeList.addEventListener("click", (e) => {
 // END EVEENTSSS /////////////////////////////////////////////////////////////
 
 
-
+// CRONOMETER FUNCTIONS //////////////////////////////////////////////////////
 function tryPlay(){
     tiempoPulsado++;
     document.body.style.background = "#742121";
@@ -171,7 +176,7 @@ function playStopCronometro() {
 };
 
 
-//REMOVE OPTIONS DEFAULTS WHEN TOUCH LONG IN MOBILE DEVICESS
+// REMOVE OPTIONS DEFAULTS WHEN TOUCH LONG IN MOBILE DEVICESS
 window.oncontextmenu = function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -179,11 +184,11 @@ window.oncontextmenu = function(event) {
 };
 
 
-
+////// PRELOEADER
 window.onload = () => {
     const preloaderElement = document.getElementById("preloader");
-
     var i = 1;
+
     var fadeInAnimation = setInterval(() => {
         i -= 0.1;
         preloaderElement.style.opacity = i;
