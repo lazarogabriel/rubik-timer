@@ -34,4 +34,4 @@ class User {
         this.times[this.times.lenght] = newTime;
     }
 }
-export default User;
+//export default User;
