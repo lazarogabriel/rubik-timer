@@ -26,6 +26,7 @@ body{
 }
 
 #time-list{
+  overflow-y: auto;
   letter-spacing: 2px;
   font-size:1.6em;
 }
